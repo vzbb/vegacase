@@ -20,8 +20,8 @@ This dashboard visualizes the extracted video clips and forensic data.
      - Source metadata.
 
 ## Data Source
-- Clips are stored in `../clips/`.
-- Metadata is in `../clips/clips_metadata.json`.
+- Clips are stored in `./clips/`.
+- Metadata is in `./clips/clips_metadata.json`.
 - Source JSON: `../backup/analysis_results_final_run1.json`.
 
 ## Processing Details

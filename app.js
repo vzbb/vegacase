@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             initDashboard();
         } else {
             console.error('CLIPS_DATA not found. attempting fetch...');
-            fetch('../clips/clips_metadata.json')
+            fetch('clips/clips_metadata.json')
                 .then(response => response.json())
                 .then(data => {
                     allClips = data;
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Robust path handling
         let videoSrc = "";
         if (clip.filename && clip.filename !== "") {
-            videoSrc = `../clips/${clip.filename}`;
+            videoSrc = `clips/${clip.filename}`;
         }
 
         el.innerHTML = `
@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function openModal(clip) {
         let videoSrc = "";
         if (clip.filename && clip.filename !== "") {
-            videoSrc = `../clips/${clip.filename}`;
+            videoSrc = `clips/${clip.filename}`;
         } else if (clip.original_video) {
             videoSrc = `../video/${clip.original_video}`;
         }
