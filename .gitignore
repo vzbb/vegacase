@@ -1,0 +1,18 @@
+# System & Logs
+*.log
+__pycache__/
+.env
+.DS_Store
+
+# Large Media & Raw Data
+video/
+results/
+backup/
+
+# Generated Dashboard Clips (Too large for git)
+dashboard/clips/**/*.mp4
+!dashboard/clips/**/clips_metadata.json
+
+# Keep the dashboard code
+!dashboard/
+!dashboard/clips/
