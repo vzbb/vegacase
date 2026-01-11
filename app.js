@@ -190,15 +190,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Robust path handling
         let videoSrc = "";
+        let isRaw = false;
         if (clip.filename && clip.filename !== "") {
             videoSrc = `clips/${clip.filename}`;
+        } else {
+            isRaw = true;
+        }
+
+        let thumbnailContent = '';
+        if (videoSrc && !isRaw) {
+             thumbnailContent = `
+                <video preload="metadata" muted onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;">
+                    <source src="${videoSrc}" type="video/mp4">
+                </video>
+             `;
+        } else {
+             // Placeholder for raw clips
+             thumbnailContent = `
+                <div class="raw-clip-placeholder" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; background:#222; color:#777;">
+                    <svg style="width:48px; height:48px; opacity:0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                        <line x1="7" y1="2" x2="7" y2="22"></line>
+                        <line x1="17" y1="2" x2="17" y2="22"></line>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <line x1="2" y1="7" x2="7" y2="7"></line>
+                        <line x1="2" y1="17" x2="7" y2="17"></line>
+                        <line x1="17" y1="17" x2="22" y2="17"></line>
+                        <line x1="17" y1="7" x2="22" y2="7"></line>
+                    </svg>
+                    <span style="font-size:0.7em; margin-top:6px; text-transform:uppercase; letter-spacing:1px;">Raw Source</span>
+                </div>
+             `;
         }
 
         el.innerHTML = `
             <div class="card-thumbnail">
-                <video preload="metadata" muted onmouseover="this.play()" onmouseout="this.pause();this.currentTime=0;">
-                    <source src="${videoSrc}" type="video/mp4">
-                </video>
+                ${thumbnailContent}
                 <div class="play-icon">
                     <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                 </div>
